@@ -41,16 +41,10 @@ const createUser = async function (req, res) {
         if (!stringVerify(password)) { return res.status(400).send({ status: false, message: "Password should be of type String." }); }
         if (!validPassword(password)) { return res.status(400).send({ status: false, message: "Password must contain 8 to 15 characters including UpperCase, Special character and Number." }); }
 
-        // if (!address) { return res.status(400).send({ status: false, message: "Address is required." }); }
-
         if (typeof (address) !== 'object') { return res.status(400).send({ status: false, message: "Address should be type of Object." }); }
 
         let { street, city, pincode } = address
 
-
-        // if (!city) { return res.status(400).send({ status: false, message: "city is required." }); }
-        // if (!street) { return res.status(400).send({ status: false, message: "street is required." }); }
-        // if (!pincode) { return res.status(400).send({ status: false, message: "pincode is required." }); }
         if (street) {
             if (!stringVerify(street)) { return res.status(400).send({ status: false, message: "Street should be type of String." }) }
         }
@@ -60,7 +54,7 @@ const createUser = async function (req, res) {
         }
         if (pincode) {
             if (!stringVerify(pincode)) { return res.status(400).send({ status: false, message: "Pincode should be of type String." }); }
-            if (!validPinCode(pincode)) { return res.status(400).send({ status: false, message: "Pincode should contain numbers only." }); }
+            if (!validPinCode(pincode)) { return res.status(400).send({ status: false, message: "Pincode should contain numbers and 6 digits"}); }
         }
         
         
